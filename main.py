@@ -5,7 +5,9 @@ from Project import *
 from forms import *
 from flask_behind_proxy import FlaskBehindProxy
 from flask_sqlalchemy import SQLAlchemy
-
+#username: cat
+##email: cat@test.com
+#password red
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
@@ -42,7 +44,7 @@ def register():
             db.session.add(user)
             db.session.commit()
         except Exception as e:
-            flash(f'Your account could not be created. Due to {e}')
+            flash(f'Your account could not be created. Account already exists')
             return render_template('register.html', title="SignUp Page", form=form)
         else:
             flash(f'Account created for {form.username.data}')
@@ -52,8 +54,16 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    if form.validate_on_submit():
-        return redirect('#')    #return reviews
+    if form.validate_on_submit(): # check entries are right   
+        user = User.query.filter_by(email=form.email.data).all()  #user =[User(username,email,password)]
+        if not user:
+            flash(f'User not found {form.email.data}')
+            return render_template('login.html', title='Login Page', form=form)
+        if not bcrypt.check_password_hash(user[0].password, form.password.data):
+            flash(f'Incorrect password for {form.email.data}')
+            return render_template('login.html', title='Login Page', form=form)
+        flash(f'Logged In {form.email.data}')
+        return render_template('home.html') #return reviews
     return render_template('login.html', title='Login Page', form=form)
 
 if __name__ == '__main__':
