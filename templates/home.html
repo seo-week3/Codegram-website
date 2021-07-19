@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>swenternz</title>
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/main.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Ubuntu&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <!-- Font awesome -->
+    <script src="https://kit.fontawesome.com/d2b21a0d45.js" crossorigin="anonymous"></script>
+</head>
+    
+    <body>
+    <section class="colored-section" id="title">
+        <div class="container-fluid">
+
+            <!-- Nav Bar -->
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="">codegram</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#footer">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register.html">SignUp</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">LogIn</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+
+            <!-- Title -->
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1 class="big-heading">Add your voice to the Tech Community!</h1>
+                    <button type="button" class="btn btn-lg btn-dark download-button" > <a href = "register.html" style="color: white">SignUp</a></button>
+                    <button type="button" class="btn btn-lg btn-outline-dark download-button"><a href = "login.html" style="color: black">LogIn</a></button>
+                </div>
+
+                <div class="col-lg-6">
+                    <img src="/static/people-transparent-background-23.png" alt="iphone-mockup" class="title-image">
+                </div>
+            </div>
+        </div>
+    </section>
+     <section class="white-section" id="features">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="feature-box col-lg-4">
+                    <!-- <center> -->
+                    <i class="icon fas fa-check-circle fa-4x"></i>
+                    <h3 class="feature-title">Easy to use.</h3>
+                    <p>Easy navigation enable you to find what you want easily.</p>
+                    <!-- </center> -->
+                </div>
+
+                <div class="feature-box col-lg-4">
+                    <!-- <center> -->
+                    <i class="icon fas fa-bullseye fa-4x"></i>
+                    <h3 class="feature-title">Customer Centric</h3>
+                    <p>In everything our wonderful users come first</p>
+                    <!-- </center> -->
+                </div>
+
+                <div class="feature-box col-lg-4">
+                    <!-- <center> -->
+                    <span class="icon fas fa-heart fa-4x"></span>
+                    <h3 class="feature-title">Guaranteed to work.</h3>
+                    <p>Whatever tech information you're seeking, codegram makes sure you find answers!</p>
+                    <!-- </center> -->
+                </div>
+            </div>
+
+        </div>
+
+    </section>  
+        <!-- Testimonials -->
+
+    <section class="colored-section" id="testimonials">
+
+        <div id="testimonial-carousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+            <!--data-ride="carousel" data-interval='1000' data-pause="hover"-->
+            <div class="carousel-inner">
+                <div class="carousel-item active container-fluid">
+                    <h2 class="testimonial-text">I 100% recommend 'Cracking the Coding Interview'. It equiped me with skills that were essential for my Facebook Interview!</h2>
+                    <em>ikasare -- CS Majors</em>
+                </div>
+                <div class="carousel-item container-fluid">
+                    <h2 class="testimonial-text">Has anyone taken the Cisco OA? Would you classify it as an LC medium or hard?</h2>
+                    <em>obolatimi -- CS interview problems</em>
+                </div>
+                <div class="carousel-item container-fluid">
+                    <h2 class="testimonial-text">I am trying to decide on a language to use for my Data Science interviews but I'm stuck between Python and R. Which one do you guys recommend?</h2>
+                    <em>rura -- DS Careers </em>
+                </div>
+            </div>
+            <h1 class="carousel-control-prev" href="#testimonial-carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </h1>
+            <a class="carousel-control-next" href="#testimonial-carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </section>
+        <section class="colored-section" id="press">
+        <img class="press-logo" src="https://startup.info/wp-content/uploads/2020/02/techcrunch-logo-1.png" alt="tc-logo">
+        <img class="press-logo" src="https://cdn.freebiesupply.com/logos/thumbs/2x/the-next-web-tnw-logo.png" alt="tnw-logo">
+        <img class="press-logo" src="https://www.conviva.com/wp-content/uploads/2019/12/Mashable-Logo.png" alt="biz-insider-logo">
+        <img class="press-logo" src="https://media.insider.com/public/assets/BI/US/logos/logos-page/BI_light_background_color_horizontal.png" alt="mashable-logo">
+
+    </section>
+        <section class="white-section" id="pricing">
+
+        <h1 class="section-heading">Welcome to Codegram</h1>
+        <p>Here, you gain access to a variety of Computer and Data Science information</p>
+        <p>You can select any of our subgroups to view numerous opinions on various topics concerning the subgroup</p>
+        <p>Find out how people performed on interviews, ask the community for help, and feel free to engage with everyone. You belong here!</p>
+        </section>
+        <!-- Call to Action -->
+
+    <section class="colored-section" id="cta">
+        <div class="container-fluid">
+
+
+            <h1 class="big-heading">Get involved today!</h1>
+            <button class="download-button btn btn-lg btn-dark" type="button"><a href = "register.html" style="color: white">SignUp</a></button>
+            <button class="download-button btn btn-lg btn-light" type="button"><a href = "login.html" style="color: black">LogIn</a></button>
+
+        </div>
+    </section>
+        <footer class="white-section" id="footer">
+        <div class="container-fluid">
+
+            <i class="social-icon fab fa-twitter"></i>
+            <i class="social-icon fab fa-facebook-f"></i>
+            <i class="social-icon fab fa-instagram"></i>
+            <i class="social-icon fas fa-envelope"></i>
+            <!-- <a class="social-icon fas fa-envelope" href="mailto:info@tindog.com"></a> -->
+            <p>© Copyright 2021 codegram</p>
+
+        </div>
+
+    </footer>
+        
+   
+    </body>
+    
+</html>
