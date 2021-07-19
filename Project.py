@@ -44,7 +44,7 @@ def get_API_data(choice):
         
         df = pd.DataFrame()  # initialize dataframe
         # loop through each post retrieved from GET request
-        for post in response.json()['data']['children'][2:]:
+        for post in response.json()['data']['children'][2:12]:
             # append relevant data to dataframe
             #clean = re.sub(r"[^. 0-9a-z]", "", post['data']['selftext'], re.IGNORECASE)
             df = df.append({
@@ -66,14 +66,14 @@ def createdb(name):
     df.to_sql(name, con=engine, if_exists='replace', index=False)
     return df
 
-def savedb(name):
-    os.system("mysqldump -u root -pcodio " + name +' > Codegram.sql')
+def savedb():
+    os.system("mysqldump -u root -pcodio Codegram > Codegram.sql")
 
-    
-def loaddb(name):
+
+def loaddb():
     os.system('mysql -u root -pcodio -e "CREATE DATABASE IF NOT EXISTS ' +
-              name + ';"')
-    os.system("mysql -u root -pcodio Premier_League < Codegram.sql")
+              'Codegram' + ';"')
+    os.system("mysql -u root -pcodio Codegram < Codegram.sql")
 
 
 def loadDataset(name, update=False):
@@ -92,8 +92,9 @@ option_6 = 'datasciencecareers'
 
 DB_list = [option_1, option_2, option_3, option_4, option_5, option_6]
 for i in DB_list:
-        createdb(i)
-        savedb(i)
+        createdb(i)       
+savedb()
+
 #print(db.head())
 
     

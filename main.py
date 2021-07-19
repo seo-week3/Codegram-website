@@ -21,6 +21,9 @@ class User(db.Model):
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
+    
+    def __repr__(self):
+        return f"User('{self.username}', '{self.email}')"
 
 
 
@@ -37,13 +40,13 @@ def register():
             pw_hash = bcrypt.generate_password_hash(form.password.data.encode('utf-8'))
             user = User(username=form.username.data, email=form.email.data, password=pw_hash)
             db.session.add(user)
-            db.seesion.commit()
+            db.session.commit()
         except Exception as e:
             flash(f'Your account could not be created. Due to {e}')
             return render_template('register.html', title="SignUp Page", form=form)
         else:
-            flash(f'Account created for {form.username}')
-            return render_template('register.html', title="SignUp Page", form=form)
+            flash(f'Account created for {form.username.data}')
+            return render_template('home.html')
     return render_template('register.html', title="SignUp Page", form=form)
 
 

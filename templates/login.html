@@ -1,15 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
-<style>
-body {
-  background-image: url("https://images.unsplash.com/photo-1620202674364-d83769d3f443?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8ODh8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60");
- background-size: cover;
-    }
-</style>
+
     <div class="content-section">
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Log In</legend>
            <div class="form-group">
          {{ form.email.label(class="form-control-label") }}
          {% if form.email.errors %}
