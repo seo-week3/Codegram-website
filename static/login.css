@@ -1,15 +1,24 @@
 body {
   background: #3282B8;
-  color: white;
+  color: black;
   margin-top: 5rem;
+  font-family: 'Montserrat', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1{
+    color:white;
+    font-family: "Ubuntu";
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+ h2, h3, h4, h5, h6 {
   color: #444444;
 }
 
 .bg-steel {
-  background-color: transparent;
+  background-color: #3282B8;
+    
 }
 
 .site-header .navbar-nav .nav-link {
@@ -30,6 +39,11 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+form {
+    display: inline-block;
 }
 
 .article-title {
@@ -37,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a.article-title:hover {
-  color: #428bca;
+  color: #3282B8;
   text-decoration: none;
 }
 
@@ -80,22 +94,29 @@ a.article-title:hover {
 }
 
 button{
-  background-color:white;
-   border: none;
+  background-color:none;
+   border: black;
    text-align: center;
    display: inline-block;
    font-size: 20px;
    margin: 4px 2px;
    cursor: pointer;
+    
    border-radius:15px;
+        color: black;
+        padding: 10px;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        margin:10px
 }
 
 button:hover{background-color:#3282B8;}
 
-button:focus{background-color:red;}
+button:focus{background-color:white;}
 
 a {
-  color: orange;
+  color: #3282B8;
 }
 
 a.button{

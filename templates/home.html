@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>swenternz</title>
+    <title>codegram</title>
 
     <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -37,10 +37,10 @@
                             <a class="nav-link" href="#footer">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="register.html">SignUp</a>
+                            <a class="nav-link" href="{{ url_for('register') }}">SignUp</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="login.html">LogIn</a>
+                            <a class="nav-link" href="{{ url_for('login') }}">LogIn</a>
                         </li>
                     </ul>
                 </div>
@@ -52,8 +52,8 @@
             <div class="row">
                 <div class="col-lg-6">
                     <h1 class="big-heading">Add your voice to the Tech Community!</h1>
-                    <button type="button" class="btn btn-lg btn-dark download-button" > <a href = "register.html" style="color: white">SignUp</a></button>
-                    <button type="button" class="btn btn-lg btn-outline-dark download-button"><a href = "login.html" style="color: black">LogIn</a></button>
+                    <button type="button" class="btn btn-lg btn-dark download-button" > <a href="{{ url_for('register') }}" style="color: white">SignUp</a></button>
+                    <button type="button" class="btn btn-lg btn-outline-dark download-button"><a href="{{ url_for('login') }}" style="color: black">LogIn</a></button>
                 </div>
 
                 <div class="col-lg-6">
@@ -145,8 +145,8 @@
 
 
             <h1 class="big-heading">Get involved today!</h1>
-            <button class="download-button btn btn-lg btn-dark" type="button"><a href = "register.html" style="color: white">SignUp</a></button>
-            <button class="download-button btn btn-lg btn-light" type="button"><a href = "login.html" style="color: black">LogIn</a></button>
+            <button class="download-button btn btn-lg btn-dark" type="button"><a href="{{ url_for('register') }}" style="color: white">SignUp</a></button>
+            <button class="download-button btn btn-lg btn-light" type="button"><a href="{{ url_for('login') }}" style="color: black">LogIn</a></button>
 
         </div>
     </section>

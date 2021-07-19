@@ -82,6 +82,13 @@ def loadDataset(name, update=False):
     df = pd.read_sql_table(name, con=engine)
     return df
 
+def Update_db(name, new_data):
+    loaddb()
+    engine = create_engine('mysql://root:codio@localhost/Codegram?charset=utf8mb4&use_unicode=1')
+    with engine.connect() as con:
+            con.execute('INSERT INTO Codegram.' + name +' (subreddit, title, selftext, author_fullname) VALUES ' + new_data)
+    savedb()
+     
         
 option_1 = "cscareerquestions"   
 option_2 = "csMajors"

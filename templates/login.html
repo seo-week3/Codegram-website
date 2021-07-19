@@ -1,12 +1,33 @@
 {% extends "layout.html" %}
 {% block content %}
+<header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+            <a  class="navbar-brand mr-4" href="/"><h1>codegram</h1></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="/"><button>
+              Home
+              </button></a>
+            <a class="nav-item nav-link" href="{{url_for('register')}}"><button>
+              Sign Up
+              </button>
+              </a>
+          </div>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-    <div class="content-section">
-        <form method="POST" action="">
+    <div class="content-section" >
+        <form  method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Log In</legend>
            <div class="form-group">
+               <legend class="border-bottom mb-4">Log In</legend>
          {{ form.email.label(class="form-control-label") }}
          {% if form.email.errors %}
            {{ form.email(class="form-control form-control-lg is-invalid") }}
@@ -36,6 +57,14 @@
     <div class="form-group">
        {{ form.submit(class="btn btn-outline-info") }}
     </div>
+            <small class="text-muted ml-2">
+                <a href="#">Forgot Password?</a>
+            </small>
    </form>
+        <div class="border-top pt-3">
+        <small class="text-muted">
+            Need An Account? <a style="color:#3282B8" class="ml-2" href="{{ url_for('register') }}">Sign Up Now</a>
+        </small>
+    </div>
 </div>
  {% endblock content %}

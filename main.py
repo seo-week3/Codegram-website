@@ -52,6 +52,8 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        return redirect('#')    #return reviews
     return render_template('login.html', title='Login Page', form=form)
 
 if __name__ == '__main__':
