@@ -48,7 +48,7 @@ def register():
             return render_template('register.html', title="SignUp Page", form=form)
         else:
             flash(f'Account created for {form.username.data}')
-            return render_template('home.html')
+            return render_template('submit.html')
     return render_template('register.html', title="SignUp Page", form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -63,13 +63,13 @@ def login():
             flash(f'Incorrect password for {form.email.data}')
             return render_template('login.html', title='Login Page', form=form)
         flash(f'Logged In {form.email.data}')
-        return render_template('home.html') #return reviews
+        return render_template('submit.html') #return reviews
     return render_template('login.html', title='Login Page', form=form)
 
 #Creating a post
-@app.route('/post', methods=['GET', 'POST'])
-def New_post():
-    return render_template('create_post.html')
+@app.route('/submit', methods=['GET', 'POST'])
+def submit():
+    return render_template('home.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
