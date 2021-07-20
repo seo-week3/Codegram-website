@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% block content %}
+<header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+            <a  class="navbar-brand mr-4" href="/"><h1>codegram</h1></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="/"><button>
+              Home
+              </button></a>
+                <a class="nav-item nav-link" href="{{url_for('selection')}}"><button>
+              All sections
+              </button>
+              </a>
+            <a class="nav-item nav-link" href="{{url_for('login')}}"><button>
+              Sign Out
+              </button>
+              </a>
+          </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="content-section" >
+        <form  method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+           <div class="form-group">
+               <legend class="border-bottom mb-4">Submit Comment</legend>
+         {{ form.subtitle.label(class="form-control-label") }}
+         {% if form.subtitle.errors %}
+           {{ form.subtitle(class="form-control form-control-lg is-invalid") }}
+           <div class="invalid-feedback">
+             {% for error in form.subtitle.errors%}
+                 <span>{{error}}</span>
+             {% endfor %}
+           </div>
+       {% else %}
+        {{ form.subtitle(class="form-control form-control-lg") }}
+       {% endif %}
+     </div>
+                
+      <div class="form-group">
+         {{ form.username.label(class="form-control-label") }}
+         {% if form.username.errors %}
+           {{ form.username(class="form-control form-control-lg is-invalid") }}
+           <div class="invalid-feedback">
+             {% for error in form.username.errors%}
+                 <span>{{error}}</span>
+             {% endfor %}
+           </div>
+       {% else %}
+           {{ form.username(class="form-control form-control-lg") }}
+       {% endif %}
+     </div>
+                <div class="form-group">
+               <legend class="border-bottom mb-4">Submit Comment</legend>
+         {{ form.title.label(class="form-control-label") }}
+         {% if form.title.errors %}
+           {{ form.title(class="form-control form-control-lg is-invalid") }}
+           <div class="invalid-feedback">
+             {% for error in form.title.errors%}
+                 <span>{{error}}</span>
+             {% endfor %}
+           </div>
+       {% else %}
+        {{ form.title(class="form-control form-control-lg") }}
+       {% endif %}
+     </div>
+                <div class="form-group">
+         {{ form.text.label(class="form-control-label") }}
+         {% if form.text.errors %}
+           {{ form.text(class="form-control form-control-lg is-invalid") }}
+           <div class="invalid-feedback">
+             {% for error in form.text.errors%}
+                 <span>{{error}}</span>
+             {% endfor %}
+           </div>
+       {% else %}
+           {{ form.text(class="form-control form-control-lg") }}
+       {% endif %}
+     </div>                
+ </fieldset>
+    <div class="form-group">
+       {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+        
+   </form>
+  
+</div>
+ {% endblock content %}

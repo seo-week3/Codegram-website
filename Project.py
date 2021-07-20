@@ -5,6 +5,8 @@ import os
 from sqlalchemy import create_engine
 import string
 
+engine = create_engine('mysql://root:codio@localhost/Codegram?charset=utf8mb4&use_unicode=1')
+
 def remove(string):
         escapes = ''.join([chr(char) for char in range(1, 32)])
         translator = str.maketrans('', '', escapes)
@@ -53,14 +55,13 @@ def get_API_data(choice):
                 'selftext': remove(post['data']['selftext']),
                 'author_fullname':post['data']['author_fullname']
             }, ignore_index=True) 
+        #print(str(df.iloc[0][0]), str(df.iloc[0][1]), str(df.iloc[0][3]))
         return df
             
         
 def createdb(name):
     df = get_API_data(name)
     os.system('mysql -u root -pcodio -e "CREATE DATABASE IF NOT EXISTS ' + 'Codegram' + ';"')
-    #create_engine('mysql+mysqldb:///mydb?charset=utf8&use_unicode=1')
-    engine = create_engine('mysql://root:codio@localhost/Codegram?charset=utf8mb4&use_unicode=1')
     with engine.connect() as con:
             con.execute('ALTER DATABASE Codegram COLLATE = "utf8mb4_unicode_ci";')
     df.to_sql(name, con=engine, if_exists='replace', index=False)
@@ -77,28 +78,32 @@ def loaddb():
 
 
 def loadDataset(name, update=False):
-    engine = create_engine('mysql://root:codio@localhost/' + 'Codegram')
     loaddb()
     df = pd.read_sql_table(name, con=engine)
     return df
 
 def Update_db(name, new_data):
-    df = loadDataset(name)
-    
-    
-    
+    #os.system('mysql -u root -pcodio -e "CREATE DATABASE IF NOT EXISTS ' + 'Codegram' + ';"')
+    with engine.connect() as con:
+            con.execute('INSERT INTO Codegram.' +name+ ' (subreddit, title, selftext, author_fullname) VALUES ' + str(new_data) + ';')
+    savedb()
+    #df.to_sql(name, con=engine, if_exists='replace', index=False)
         
 option_1 = "cscareerquestions"   
 option_2 = "csMajors"
 option_3 = "csinterviewproblems"
 option_4 = 'DataScienceJobs'
-option_5 = 'cscareers'
+option_5 = 'SoftwareEngineering'
 option_6 = 'datasciencecareers'
 
-DB_list = [option_1, option_2, option_3, option_4, option_5, option_6]
-for i in DB_list:
-        createdb(i)       
-savedb()
+# DB_list = [option_1, option_2, option_3, option_4, option_5, option_6]
+# for i in DB_list:
+#         createdb(i)       
+# savedb()
+
+get_API_data(option_1)
+
+#df = Update_db()
 
 #print(db.head())
 

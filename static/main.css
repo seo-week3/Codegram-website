@@ -192,3 +192,10 @@ button.download-button {
         text-align: center;
     }
 }
+
+.username{
+    text-align: left;
+    padding: 5%;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}

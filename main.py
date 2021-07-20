@@ -63,13 +63,130 @@ def login():
             flash(f'Incorrect password for {form.email.data}')
             return render_template('login.html', title='Login Page', form=form)
         flash(f'Logged In {form.email.data}')
-        return render_template('submit.html') #return reviews
+        return render_template('selection.html') #return reviews
     return render_template('login.html', title='Login Page', form=form)
 
-#Creating a post
+#reviews html for reviews page
+#Sumbit for Creating a post
 @app.route('/submit', methods=['GET', 'POST'])
 def submit():
-    return render_template('home.html')
+    form = PostForm()
+    if form.validate_on_submit(): # checking if entries are valid
+        user = User.query.filter_by(username=form.username.data).all()
+        if not user:
+            flash('Please sign up to submit a comment')
+            return redirect('register.html', form=RegistrationForm()) 
+        try:
+            Update_db(form.subtitle.data, (str(form.subtitle.data),str(form.title.data),str(form.text.data), str(form.username.data)))
+        except Exception as e:            
+            flash(f'Form could not be sumitted {e}')
+            return render_template('home.html', form=form)
+        else:
+            flash(f'Post submitted!', 'success')
+            return render_template('submit.html', form=form)
+    return render_template('submit.html', form=form)    
+        
+@app.route('/selection', methods=['GET', 'POST'])
+def selection():
+    return render_template('selection.html')
+
+@app.route('/selection_display', methods=['GET', 'POST'])
+def selection_display():
+    return render_template('selection_display.html')
+
+#PLACE HOLDERS
+# @app.route('/cscareerquestions', methods=['GET', 'POST'])
+# def cscareerquestions():
+#     return render_template('cscareerquestions.html')
+
+# @app.route('/dsquestions', methods=['GET', 'POST'])
+# def dsquestions():
+#     return render_template('dsquestions.html')
+
+# @app.route('/csmajors', methods=['GET', 'POST'])
+# def csmajors():
+#     return render_template('csmajors.html')
+
+# @app.route('/csjobs', methods=['GET', 'POST'])
+# def csjobs():
+#     return render_template('csjobs.html')
+
+# @app.route('/csjobs', methods=['GET', 'POST'])
+# def csinterviewproblems():
+#     return render_template('csinterviewproblems.html')
+
+# @app.route('/dscareerquestions', methods=['GET', 'POST'])
+# def dscareerquestions():
+#     return render_template('dscareerquestions.html')
+
+
+@app.route("/cscareerquestions", methods=['GET', 'POST'])
+def cscareerquestions():
+    name = "cscareerquestions"
+    try:
+        df = loadDataset(name)
+    except Exception as e:
+        flash(f'System is currently down, select other choice')
+        return render_template('selection.html', form=form)
+    else:
+        return render_template('cscareerquestions.html')
+    
+@app.route("/csMajors", methods=['GET', 'POST'])
+def csMajors():
+    name = "csMajors"
+    try:
+        df = loadDataset(name)
+    except Exception as e:
+        flash(f'System is currently down, select other choice')
+        return render_template('selection.html', form=form)
+    else:
+        #str(df.iloc[0][0]), str(df.iloc[0][1]), str(df.iloc[0][3]))
+        return render_template('csMajors.html')
+    
+@app.route("/csinterviewproblems", methods=['GET', 'POST'])
+def csinterviewproblems():
+    name = "csinterviewproblems"
+    try:
+        df = loadDataset(name)
+    except Exception as e:
+        flash(f'System is currently down, select other choice')
+        return render_template('selection.html', form=form)
+    else:
+        return render_template('csinterviewproblems.html')
+    
+@app.route("/DataScienceJobs", methods=['GET', 'POST'])
+def DataScienceJobs():
+    name = "DataScienceJobs"
+    try:
+        df = loadDataset(name)
+    except Exception as e:
+        flash(f'System is currently down, select other choice')
+        return render_template('selection.html', form=form)
+    else:
+        return render_template('DataScienceJobs.html')
+    
+@app.route("/SoftwareEngineering", methods=['GET', 'POST'])
+def SoftwareEngineering():
+    name = "SoftwareEngineering"
+    try:
+        df = loadDataset(name)
+    except Exception as e:
+        flash(f'System is currently down, select other choice')
+        return render_template('selection.html', form=form)
+    else:
+        return render_template('SoftwareEngineering.html')
+    
+@app.route("/datasciencecareers", methods=['GET', 'POST'])
+def datasciencecareers():
+    name = "datasciencecareers"
+    try:
+        df = loadDataset(name)
+    except Exception as e:
+        flash(f'System is currently down, select other choice')
+        return render_template('selection.html', form=form)
+    else:
+        return render_template('datasciencecareers.html')
+    
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
