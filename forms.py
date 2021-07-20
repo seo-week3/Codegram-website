@@ -14,7 +14,11 @@ class LoginForm(FlaskForm):
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
-    #remember = BooleanField('Remember Me')
+    remember = BooleanField('Remember Me')
     submit = SubmitField('Login') 
     
+class Post(FlaskForm):
+    title = StringField('Title', validators=[DataRequired()], Length(min=5, max=30))
+    text = StringField('Text', validators=[DataRequired()])
+    submit = SubmitField('Post')
     

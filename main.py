@@ -66,6 +66,11 @@ def login():
         return render_template('home.html') #return reviews
     return render_template('login.html', title='Login Page', form=form)
 
+#Creating a post
+@app.route('/post', methods=['GET', 'POST'])
+def New_post():
+    return render_template('create_post.html')
+
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
     
