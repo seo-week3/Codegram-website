@@ -5,9 +5,15 @@ from Project import *
 from forms import *
 from flask_behind_proxy import FlaskBehindProxy
 from flask_sqlalchemy import SQLAlchemy
+import pandas as pd
+from IPython.display import HTML
+
 #username: cat
 ##email: cat@test.com
 #password red
+
+# What if the user would like to see their own post, or maybe we should query the dataframe such that it displays the users comment first
+# Change DSJobs table titles, also query a lot more data items if possible into the dataframe
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
@@ -94,32 +100,7 @@ def selection():
 def selection_display():
     return render_template('selection_display.html')
 
-#PLACE HOLDERS
-# @app.route('/cscareerquestions', methods=['GET', 'POST'])
-# def cscareerquestions():
-#     return render_template('cscareerquestions.html')
-
-# @app.route('/dsquestions', methods=['GET', 'POST'])
-# def dsquestions():
-#     return render_template('dsquestions.html')
-
-# @app.route('/csmajors', methods=['GET', 'POST'])
-# def csmajors():
-#     return render_template('csmajors.html')
-
-# @app.route('/csjobs', methods=['GET', 'POST'])
-# def csjobs():
-#     return render_template('csjobs.html')
-
-# @app.route('/csjobs', methods=['GET', 'POST'])
-# def csinterviewproblems():
-#     return render_template('csinterviewproblems.html')
-
-# @app.route('/dscareerquestions', methods=['GET', 'POST'])
-# def dscareerquestions():
-#     return render_template('dscareerquestions.html')
-
-
+# SELECTION ROUTES
 @app.route("/cscareerquestions", methods=['GET', 'POST'])
 def cscareerquestions():
     name = "cscareerquestions"
@@ -129,7 +110,8 @@ def cscareerquestions():
         flash(f'System is currently down, select other choice')
         return render_template('selection.html', form=form)
     else:
-        return render_template('cscareerquestions.html')
+        x = df.to_dict('records')
+        return render_template('cscareerquestions.html', x=x)
     
 @app.route("/csMajors", methods=['GET', 'POST'])
 def csMajors():
@@ -140,8 +122,8 @@ def csMajors():
         flash(f'System is currently down, select other choice')
         return render_template('selection.html', form=form)
     else:
-        #str(df.iloc[0][0]), str(df.iloc[0][1]), str(df.iloc[0][3]))
-        return render_template('csMajors.html')
+        x = df.to_dict('records')
+        return render_template('csMajors.html', x=x)
     
 @app.route("/csinterviewproblems", methods=['GET', 'POST'])
 def csinterviewproblems():
@@ -152,7 +134,8 @@ def csinterviewproblems():
         flash(f'System is currently down, select other choice')
         return render_template('selection.html', form=form)
     else:
-        return render_template('csinterviewproblems.html')
+        x = df.to_dict('records')
+        return render_template('csinterviewproblems.html', x=x)
     
 @app.route("/DataScienceJobs", methods=['GET', 'POST'])
 def DataScienceJobs():
@@ -163,7 +146,10 @@ def DataScienceJobs():
         flash(f'System is currently down, select other choice')
         return render_template('selection.html', form=form)
     else:
-        return render_template('DataScienceJobs.html')
+        df1 = df.drop(columns=['selftext'])
+        df1.columns = ['Author', 'Category', 'Title']
+        return render_template('DataScienceJobs.html', tables=[df1.to_html(
+            classes='table table-hover', header="true")])
     
 @app.route("/SoftwareEngineering", methods=['GET', 'POST'])
 def SoftwareEngineering():
@@ -174,7 +160,8 @@ def SoftwareEngineering():
         flash(f'System is currently down, select other choice')
         return render_template('selection.html', form=form)
     else:
-        return render_template('SoftwareEngineering.html')
+        x = df.to_dict('records')
+        return render_template('SoftwareEngineering.html', x=x)
     
 @app.route("/datasciencecareers", methods=['GET', 'POST'])
 def datasciencecareers():
@@ -185,7 +172,8 @@ def datasciencecareers():
         flash(f'System is currently down, select other choice')
         return render_template('selection.html', form=form)
     else:
-        return render_template('datasciencecareers.html')
+        x = df.to_dict('records')
+        return render_template('datasciencecareers.html', x=x)
     
 
 if __name__ == '__main__':
