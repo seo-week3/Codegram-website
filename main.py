@@ -121,7 +121,7 @@ def selection_display():
         df = loadDataset(name)
     except Exception as e:
         flash(f'System is currently down, select other choice')
-        return render_template('selection.html', form=form)
+        return render_template('selection.html')
     else:
         x = df.to_dict('records')
         return render_template('datasciencecareers.html', x=x)
@@ -136,7 +136,7 @@ def cscareerquestions():
         df = loadDataset(name)
     except Exception as e:
         flash(f'System is currently down, select other choice')
-        return render_template('selection.html', form=form)
+        return render_template('selection.html')
     else:
         x = df.to_dict('records')
         return render_template('cscareerquestions.html', x=x)
@@ -149,7 +149,7 @@ def csMajors():
         df = loadDataset(name)
     except Exception as e:
         flash(f'System is currently down, select other choice')
-        return render_template('selection.html', form=form)
+        return render_template('selection.html')
     else:
         x = df.to_dict('records')
         return render_template('csMajors.html', x=x)
@@ -162,7 +162,7 @@ def csinterviewproblems():
         df = loadDataset(name)
     except Exception as e:
         flash(f'System is currently down, select other choice')
-        return render_template('selection.html', form=form)
+        return render_template('selection.html')
     else:
         x = df.to_dict('records')  # [{author:23, 45, 45}, comment:svrevr]
         return render_template('csinterviewproblems.html', x=x)
@@ -175,22 +175,22 @@ def DataScienceJobs():
         df = loadDataset(name)
     except Exception as e:
         flash(f'System is currently down, select other choice')
-        return render_template('selection.html', form=form)
+        return render_template('selection.html')
     else:
-        df1 = df.drop(columns=['selftext'])
-        df1.columns = ['Author', 'Category', 'Job Description and Location']
-        return render_template('DataScienceJobs.html', tables=[df1.to_html(
+        df = df.drop(columns=['selftext', 'user_id'])
+        df.columns = ['Author', 'Category', 'Job Description and Location']
+        return render_template('DataScienceJobs.html', tables=[df.to_html(
             classes='table table-hover', justify='center', header="true")])
 
 
 @app.route("/softwaredevelopment", methods=['GET', 'POST'])
 def softwaredevelopment():
-    name = "SoftwareEngineering"
+    name = "softwaredevelopment"
     try:
         df = loadDataset(name)
     except Exception as e:
         flash(f'System is currently down, select other choice')
-        return render_template('selection.html', form=form)
+        return render_template('selection.html')
     else:
         x = df.to_dict('records')
         return render_template('softwaredevelopment.html', x=x)
@@ -203,7 +203,7 @@ def datasciencecareers():
         df = loadDataset(name)
     except Exception as e:
         flash(f'System is currently down, select other choice')
-        return render_template('selection.html', form=form)
+        return render_template('selection.html')
     else:
         x = df.to_dict('records')
         return render_template('datasciencecareers.html', x=x)
