@@ -1,0 +1,11 @@
+0000000000000000000000000000000000000000 92e835abde30cdfde3c7fb1dd1ed5a33b084c52f Isaac Asare <iasarekwaku@gmail.com> 1626718717 +0000	clone: from https://github.com/seo-week3/Codegram-website.git
+92e835abde30cdfde3c7fb1dd1ed5a33b084c52f 5a156d14bd872a960374fe4da8762de821af5959 Isaac Asare <iasarekwaku@gmail.com> 1626718795 +0000	commit: initial commit
+5a156d14bd872a960374fe4da8762de821af5959 691b0ab35bb4bd80c1d6419aa94454be2f604518 Ruramai Mutefura <RMutefura.23@westminster-mo.edu> 1626721731 +0000	commit: database working
+691b0ab35bb4bd80c1d6419aa94454be2f604518 23343a0919b50d8bb255d939cba420d55e7a5c22 Ruramai Mutefura <RMutefura.23@westminster-mo.edu> 1626722035 +0000	commit: added database
+23343a0919b50d8bb255d939cba420d55e7a5c22 8c3f216ea340861ebb9be53183b221ba8b65b7fb Ruramai Mutefura <RMutefura.23@westminster-mo.edu> 1626731489 +0000	commit: all interfaces work
+8c3f216ea340861ebb9be53183b221ba8b65b7fb 858055299ce1ee48516a2505eb0a857f27615cb1 Ruramai Mutefura <RMutefura.23@westminster-mo.edu> 1626733769 +0000	commit: user authentication done
+858055299ce1ee48516a2505eb0a857f27615cb1 06316d47df556c9d2220bb0b393ac43dea8d6f5d Ruramai Mutefura <RMutefura.23@westminster-mo.edu> 1626757450 +0000	commit: submit page added
+06316d47df556c9d2220bb0b393ac43dea8d6f5d dd9180f57f5dbff1a66a97c6e6ff35fd6df7b562 Ruramai Mutefura <RMutefura.23@westminster-mo.edu> 1626793544 +0000	commit: made changes
+dd9180f57f5dbff1a66a97c6e6ff35fd6df7b562 c18f08d182440f3f71f05634a8456c3b85e6d28d Ruramai Mutefura <RMutefura.23@westminster-mo.edu> 1626819480 +0000	commit: finished interfaces
+c18f08d182440f3f71f05634a8456c3b85e6d28d b8a18cffabe51d617cf6692c3a3187a9891e38a8 Ruramai Mutefura <RMutefura.23@westminster-mo.edu> 1626843614 +0000	commit: user comments rendered in html
+b8a18cffabe51d617cf6692c3a3187a9891e38a8 6ffbe7fe3762be9185b8a6fca618d81a56f4f129 Ruramai Mutefura <RMutefura.23@westminster-mo.edu> 1626844422 +0000	commit: styled table
