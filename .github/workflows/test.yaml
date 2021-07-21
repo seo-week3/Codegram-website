@@ -22,6 +22,8 @@ jobs:
           pip3 install flask_bcrypt
           pip3 install requests
           pip3 install pandas
+          pip3 install sqlalchemy
+          pip3 
 
       - name: Test webpages
         run: python3 tests/main_test.py
