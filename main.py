@@ -147,9 +147,9 @@ def DataScienceJobs():
         return render_template('selection.html', form=form)
     else:
         df1 = df.drop(columns=['selftext'])
-        df1.columns = ['Author', 'Category', 'Title']
+        df1.columns = ['Author', 'Category', 'Job Description and Location']
         return render_template('DataScienceJobs.html', tables=[df1.to_html(
-            classes='table table-hover', header="true")])
+            classes='table table-hover', justify='center', header="true")])
     
 @app.route("/SoftwareEngineering", methods=['GET', 'POST'])
 def SoftwareEngineering():
