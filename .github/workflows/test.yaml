@@ -24,6 +24,8 @@ jobs:
           pip3 install pandas
           pip3 install sqlalchemy
           pip3 install mysqlclient
+          pip3 install flask_behind_proxy
+          pip3 install IPython.display 
 
       - name: Test webpages
         run: python3 tests/main_test.py
