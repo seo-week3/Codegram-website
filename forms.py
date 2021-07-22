@@ -32,16 +32,17 @@ class LoginForm(FlaskForm):
 # option_5 = 'softwaredevelopment'
 # option_6 = 'datasciencecareers'
 
+
 class PostForm(FlaskForm):
-    subtitle = SelectField('Select Subtopic',validators=[DataRequired()],
-            choices=[
-            ('cscareerquestions', 'CS Career Questions'),
-            ('csinterviewproblems', 'CS Interview Problems'),
-            ('csMajors', 'CS Majors'),
-            ('softwaredevelopment', 'Software Development'),
-            ('datasciencecareers', 'DS Careers')
-        ])
-                
+    subtitle = SelectField('Select Subtopic', validators=[DataRequired()],
+                           choices=[
+        ('cscareerquestions', 'CS Career Questions'),
+        ('csinterviewproblems', 'CS Interview Problems'),
+        ('csMajors', 'CS Majors'),
+        ('softwaredevelopment', 'Software Development'),
+        ('datasciencecareers', 'DS Careers')
+    ])
+
     username = StringField(
         'Username', validators=[
             DataRequired(), Length(

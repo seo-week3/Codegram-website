@@ -16,7 +16,8 @@ from IPython.display import HTML
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 app.config['SECRET_KEY'] = 'a7b24667c02b1eeecea744c063db3bd3'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Codegram.db' # mysql://root:codio@localhost/Codegram
+# mysql://root:codio@localhost/Codegram
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Codegram.db'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 # this variable, db, will be used for all SQLAlchemy commands
@@ -53,7 +54,9 @@ def register():
             db.session.add(user)
             db.session.commit()
         except Exception as e:
-            flash(f'Your account could not be created. Account already exists {e}')
+            flash(
+                f"""Your account could not be created.
+                Account already exists {e}""")
             return render_template(
                 'register.html',
                 title="SignUp Page",
@@ -106,7 +109,6 @@ def submit():
         else:
             flash(f'Post submitted!')
             return render_template('selection.html')
-    #options = ["cscareerquestions", "csMajors", "csinterviewproblems", 'DataScienceJobs', 'softwaredevelopment', 'datasciencecareers']        
     return render_template('submit.html', form=form)
 
 
@@ -182,7 +184,7 @@ def DataScienceJobs():
         flash(f'System is currently down, select other choice')
         return render_template('selection.html')
     else:
-        df.index +=1
+        df.index += 1
         df = df.drop(columns=['selftext', 'user_id'])
         df.columns = ['Author', 'Category', 'Job Description and Location']
         return render_template('DataScienceJobs.html', tables=[df.to_html(

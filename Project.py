@@ -128,8 +128,9 @@ def Update_db(name, new_data):
             str(new_data) +
             ';')
     print('success')
-    #savedb()
+    # savedb()
     # df.to_sql(name, con=engine, if_exists='replace', index=False)
+
 
 def move_comment_up(df):
     idx = df.index.tolist()
@@ -137,6 +138,7 @@ def move_comment_up(df):
     df = df.reindex([len(df.index) - 1] + idx)
     print(df)
     return (df)
+
 
 option_1 = "cscareerquestions"
 option_2 = "csMajors"
