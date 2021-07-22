@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
+<script src="https://use.fontawesome.com/66366191e9.js"></script>
 <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
@@ -29,23 +30,22 @@
     <div class="content-section" >
         <form  method="POST" action="">
             {{ form.hidden_tag() }}
-            
+            <legend class="border-bottom mb-4">Submit Post</legend>
+     
             <fieldset class="form-group">
-           <div class="form-group">
-               <legend class="border-bottom mb-4">Submit Post</legend>
-               <i class="fas fa-caret-down"></i>
-         {{ form.subtitle.label(class="form-control-label") }}
-         {% if form.subtitle.errors %}
-           {{ form.subtitle(class="form-control form-control-lg is-invalid") }}
-           <div class="invalid-feedback">
-             {% for error in form.subtitle.errors%}
-                 <span>{{error}}</span>
-             {% endfor %}
-           </div>
-       {% else %}
-        {{ form.subtitle(class="form-control form-control-lg") }}
-       {% endif %}
-     </div>
+                {{ form.subtitle.label(class="form-control-label") }}
+            {% if form.subtitle.errors %}
+              <ul class="errors">
+                {% for error in form.subtitle.errors %}
+                  <li class="error">
+                      <i class="fas fa-exclamation"></i> <span class="error-message">{{ error }}</span>
+                  </li>
+                {% endfor %}
+              </ul>
+                {% else %}
+           {{ form.subtitle(class="form-control form-control-lg") }}
+            {% endif %}
+                
              <br/>                 
       <div class="form-group">
          {{ form.username.label(class="form-control-label") }}

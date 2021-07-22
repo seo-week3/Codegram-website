@@ -41,7 +41,7 @@ class PostForm(FlaskForm):
         ('csMajors', 'CS Majors'),
         ('softwaredevelopment', 'Software Development'),
         ('datasciencecareers', 'DS Careers')
-    ], render_kw={'style':'width: 30ch'})
+    ], render_kw={'style':'width: 25ch'})
     
     username = StringField(
         'Username', validators=[
