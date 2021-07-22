@@ -200,3 +200,9 @@ button.download-button {
     padding-bottom: 10px;
 }
 
+.sectionheader{
+    text-align: center;
+    font-weight: bold;
+    padding-top: 30px;
+    
+}

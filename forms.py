@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField
+from wtforms import StringField, PasswordField, SelectField
 from wtforms import SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length
 from wtforms.validators import Email, EqualTo, ValidationError
@@ -25,12 +25,23 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
+# option_1 = "cscareerquestions"
+# option_2 = "csMajors"
+# option_3 = "csinterviewproblems"
+# option_4 = 'DataScienceJobs'
+# option_5 = 'softwaredevelopment'
+# option_6 = 'datasciencecareers'
 
 class PostForm(FlaskForm):
-    subtitle = StringField(
-        'Subtopic', validators=[
-            DataRequired(), Length(
-                min=2, max=20)])
+    subtitle = SelectField('Select Subtopic',validators=[DataRequired()],
+            choices=[
+            ('cscareerquestions', 'CS Career Questions'),
+            ('csinterviewproblems', 'CS Interview Problems'),
+            ('csMajors', 'CS Majors'),
+            ('softwaredevelopment', 'Software Development'),
+            ('datasciencecareers', 'DS Careers')
+        ])
+                
     username = StringField(
         'Username', validators=[
             DataRequired(), Length(

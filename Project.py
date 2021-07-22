@@ -78,25 +78,25 @@ def createdb(name):
     with engine.connect() as con:
         con.execute('ALTER DATABASE Codegram COLLATE = "utf8mb4_unicode_ci";')
     df.to_sql(name, con=engine, if_exists='replace', index=False)
-    with engine.connect() as con:
-        con.execute(
-            """ALTER TABLE Codegram.csMajors
-            ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
-        con.execute(
-            """ALTER TABLE Codegram.datasciencecareers
-            ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
-        con.execute(
-            """ALTER TABLE Codegram.cscareerquestions
-            ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
-        con.execute(
-            """ALTER TABLE Codegram.csinterviewproblems
-            ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
-        con.execute(
-            """ALTER TABLE Codegram.DataScienceJobs
-            ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
-        con.execute(
-            """ALTER TABLE Codegram.softwaredevelopment
-            ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
+#     with engine.connect() as con:
+#             con.execute(
+# #             """ALTER TABLE Codegram.csMajors
+# #             ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
+# #        con.execute(
+#             """ALTER TABLE Codegram.datasciencecareers
+#             ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
+# #         con.execute(
+# #             """ALTER TABLE Codegram.cscareerquestions
+# #             ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
+# #         con.execute(
+# #             """ALTER TABLE Codegram.csinterviewproblems
+# #             ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
+# #         con.execute(
+# #             """ALTER TABLE Codegram.DataScienceJobs
+# #             ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
+# #         con.execute(
+#              """ALTER TABLE Codegram.softwaredevelopment
+#              ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
     return df
 
 
@@ -127,14 +127,16 @@ def Update_db(name, new_data):
             ' (subreddit, title, selftext, author_fullname) VALUES ' +
             str(new_data) +
             ';')
-        con.execute(
-            'UPDATE Codegram.' +
-            name +
-            """SET user_id = 0
-            WHERE user_id = (select max(user_id) ORDER BY user_id;""")
-    savedb()
+    print('success')
+    #savedb()
     # df.to_sql(name, con=engine, if_exists='replace', index=False)
 
+def move_comment_up(df):
+    idx = df.index.tolist()
+    idx.pop(len(df.index) - 1)
+    df = df.reindex([len(df.index) - 1] + idx)
+    print(df)
+    return (df)
 
 option_1 = "cscareerquestions"
 option_2 = "csMajors"
@@ -147,9 +149,4 @@ option_6 = 'datasciencecareers'
 # for i in DB_list:
 #         createdb(i)
 # createdb(option_5)
-savedb()
-
-
-# df = Update_db()
-
-# print(db.head())
+# savedb()

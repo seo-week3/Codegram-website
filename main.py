@@ -16,7 +16,7 @@ from IPython.display import HTML
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 app.config['SECRET_KEY'] = 'a7b24667c02b1eeecea744c063db3bd3'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:codio@localhost/Codegram'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Codegram.db' # mysql://root:codio@localhost/Codegram
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 # this variable, db, will be used for all SQLAlchemy commands
@@ -53,7 +53,7 @@ def register():
             db.session.add(user)
             db.session.commit()
         except Exception as e:
-            flash(f'Your account could not be created. Account already exists')
+            flash(f'Your account could not be created. Account already exists {e}')
             return render_template(
                 'register.html',
                 title="SignUp Page",
@@ -102,10 +102,11 @@ def submit():
                     form.username.data)))
         except Exception as e:
             flash(f'Form could not be sumitted {e}')
-            return render_template('home.html', form=form)
+            return render_template('selection.html')
         else:
             flash(f'Post submitted!')
-            return render_template('submit.html', form=form)
+            return render_template('selection.html')
+    #options = ["cscareerquestions", "csMajors", "csinterviewproblems", 'DataScienceJobs', 'softwaredevelopment', 'datasciencecareers']        
     return render_template('submit.html', form=form)
 
 
@@ -119,12 +120,13 @@ def selection_display():
     name = "datasciencecareers"
     try:
         df = loadDataset(name)
+        df = df.sort_values(['user_id'], ascending=False)
     except Exception as e:
         flash(f'System is currently down, select other choice')
         return render_template('selection.html')
     else:
         x = df.to_dict('records')
-        return render_template('datasciencecareers.html', x=x)
+        return render_template('selection_display.html', x=x)
 
 # SELECTION ROUTES
 
@@ -134,6 +136,7 @@ def cscareerquestions():
     name = "cscareerquestions"
     try:
         df = loadDataset(name)
+        df = df.sort_values(['user_id'], ascending=False)
     except Exception as e:
         flash(f'System is currently down, select other choice')
         return render_template('selection.html')
@@ -147,6 +150,7 @@ def csMajors():
     name = "csMajors"
     try:
         df = loadDataset(name)
+        df = df.sort_values(['user_id'], ascending=False)
     except Exception as e:
         flash(f'System is currently down, select other choice')
         return render_template('selection.html')
@@ -160,6 +164,7 @@ def csinterviewproblems():
     name = "csinterviewproblems"
     try:
         df = loadDataset(name)
+        df = df.sort_values(['user_id'], ascending=False)
     except Exception as e:
         flash(f'System is currently down, select other choice')
         return render_template('selection.html')
@@ -177,6 +182,7 @@ def DataScienceJobs():
         flash(f'System is currently down, select other choice')
         return render_template('selection.html')
     else:
+        df.index +=1
         df = df.drop(columns=['selftext', 'user_id'])
         df.columns = ['Author', 'Category', 'Job Description and Location']
         return render_template('DataScienceJobs.html', tables=[df.to_html(
@@ -188,8 +194,9 @@ def softwaredevelopment():
     name = "softwaredevelopment"
     try:
         df = loadDataset(name)
+        df = df.sort_values(['user_id'], ascending=False)
     except Exception as e:
-        flash(f'System is currently down, select other choice')
+        flash(f'Server down {e}')
         return render_template('selection.html')
     else:
         x = df.to_dict('records')
@@ -201,8 +208,9 @@ def datasciencecareers():
     name = "datasciencecareers"
     try:
         df = loadDataset(name)
+        df = df.sort_values(['user_id'], ascending=False)
     except Exception as e:
-        flash(f'System is currently down, select other choice')
+        flash(f'System is currently down, select other choice {e}')
         return render_template('selection.html')
     else:
         x = df.to_dict('records')
