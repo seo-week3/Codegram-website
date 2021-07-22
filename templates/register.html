@@ -18,7 +18,7 @@
          {{ form.username(class="form-control form-control-lg") }}
      {% endif %}
  </div>
-                
+         <br/>       
            <div class="form-group">
          {{ form.email.label(class="form-control-label") }}
          {% if form.email.errors %}
@@ -32,7 +32,7 @@
         {{ form.email(class="form-control form-control-lg") }}
        {% endif %}
      </div>
-                
+          <br/>      
      <div class="form-group">
          {{ form.password.label(class="form-control-label") }}
          {% if form.password.errors %}
@@ -46,6 +46,7 @@
            {{ form.password(class="form-control form-control-lg") }}
        {% endif %}
      </div>
+                <br/>
                  <div class="form-group">
          {{ form.confirm_password.label(class="form-control-label") }}
          {% if form.confirm_password.errors %}
@@ -59,6 +60,7 @@
            {{ form.confirm_password(class="form-control form-control-lg") }}
        {% endif %}
      </div>
+                <br/>
  </fieldset>
     <div class="form-group">
        {{ form.submit(class="btn btn-outline-info") }}

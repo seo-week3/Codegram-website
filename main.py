@@ -16,7 +16,8 @@ from IPython.display import HTML
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 app.config['SECRET_KEY'] = 'a7b24667c02b1eeecea744c063db3bd3'
-# mysql://root:codio@localhost/Codegram
+# 'mysql://root:codio@localhost/Codegram' 'sqlite:///Codegram.db'
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Codegram.db'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True

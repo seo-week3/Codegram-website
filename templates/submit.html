@@ -33,6 +33,7 @@
             <fieldset class="form-group">
            <div class="form-group">
                <legend class="border-bottom mb-4">Submit Post</legend>
+               <i class="fas fa-caret-down"></i>
          {{ form.subtitle.label(class="form-control-label") }}
          {% if form.subtitle.errors %}
            {{ form.subtitle(class="form-control form-control-lg is-invalid") }}
@@ -45,7 +46,7 @@
         {{ form.subtitle(class="form-control form-control-lg") }}
        {% endif %}
      </div>
-                              
+             <br/>                 
       <div class="form-group">
          {{ form.username.label(class="form-control-label") }}
          {% if form.username.errors %}
@@ -59,6 +60,7 @@
            {{ form.username(class="form-control form-control-lg") }}
        {% endif %}
      </div>
+                <br/>
                 <div class="form-group">
          {{ form.title.label(class="form-control-label") }}
          {% if form.title.errors %}
@@ -72,6 +74,7 @@
         {{ form.title(class="form-control form-control-lg") }}
        {% endif %}
      </div>
+                <br/>
                 <div class="form-group">
          {{ form.text.label(class="form-control-label") }}
          {% if form.text.errors %}
@@ -84,7 +87,8 @@
        {% else %}
            {{ form.text(class="form-control form-control-lg") }}
        {% endif %}
-     </div>                
+     </div>   
+                    <br/>
  </fieldset>
     <div class="form-group">
        {{ form.submit(class="btn btn-outline-info") }}

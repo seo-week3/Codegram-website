@@ -4,6 +4,9 @@ import pandas as pd
 import os
 from sqlalchemy import create_engine
 import string
+from bs4 import BeautifulSoup
+from html import unescape
+
 
 engine = create_engine(
     'mysql://root:codio@localhost/Codegram?charset=utf8mb4&use_unicode=1')
@@ -13,7 +16,8 @@ def remove(string):
     escapes = ''.join([chr(char) for char in range(1, 32)])
     translator = str.maketrans('', '', escapes)
     t = string.translate(translator)
-    return t
+    new_string = BeautifulSoup(unescape(t), 'lxml')
+    return new_string.text
 
 
 def get_API_data(choice):
@@ -65,7 +69,6 @@ def get_API_data(choice):
             'selftext': remove(post['data']['selftext']),
             'author_fullname': post['data']['author_fullname']
         }, ignore_index=True)
-    # print(str(df.iloc[0][0]), str(df.iloc[0][1]), str(df.iloc[0][3]))
     return df
 
 
@@ -78,27 +81,33 @@ def createdb(name):
     with engine.connect() as con:
         con.execute('ALTER DATABASE Codegram COLLATE = "utf8mb4_unicode_ci";')
     df.to_sql(name, con=engine, if_exists='replace', index=False)
-#     with engine.connect() as con:
-#             con.execute(
-# #             """ALTER TABLE Codegram.csMajors
-# #             ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
-# #        con.execute(
-#             """ALTER TABLE Codegram.datasciencecareers
-#             ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
-# #         con.execute(
-# #             """ALTER TABLE Codegram.cscareerquestions
-# #             ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
-# #         con.execute(
-# #             """ALTER TABLE Codegram.csinterviewproblems
-# #             ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
-# #         con.execute(
-# #             """ALTER TABLE Codegram.DataScienceJobs
-# #             ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
-# #         con.execute(
-#              """ALTER TABLE Codegram.softwaredevelopment
-#              ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
     return df
 
+#call function once!
+# def add_userid(): 
+#     os.system(
+#         'mysql -u root -pcodio -e "CREATE DATABASE IF NOT EXISTS ' +
+#         'Codegram' +
+#         ';"')
+#     with engine.connect() as con:
+#         con.execute(
+#              """ALTER TABLE Codegram.csMajors
+#              ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
+#         con.execute(
+#              """ALTER TABLE Codegram.datasciencecareers
+#              ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
+#         con.execute(
+#              """ALTER TABLE Codegram.cscareerquestions
+#              ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
+#         con.execute(
+#              """ALTER TABLE Codegram.csinterviewproblems
+#              ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
+#         con.execute(
+#              """ALTER TABLE Codegram.DataScienceJobs
+#              ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
+#         con.execute(
+#               """ALTER TABLE Codegram.softwaredevelopment
+#               ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
 
 def savedb():
     os.system("mysqldump -u root -pcodio Codegram > Codegram.sql")
@@ -127,18 +136,7 @@ def Update_db(name, new_data):
             ' (subreddit, title, selftext, author_fullname) VALUES ' +
             str(new_data) +
             ';')
-    print('success')
-    # savedb()
-    # df.to_sql(name, con=engine, if_exists='replace', index=False)
-
-
-def move_comment_up(df):
-    idx = df.index.tolist()
-    idx.pop(len(df.index) - 1)
-    df = df.reindex([len(df.index) - 1] + idx)
-    print(df)
-    return (df)
-
+    savedb()
 
 option_1 = "cscareerquestions"
 option_2 = "csMajors"
@@ -147,8 +145,8 @@ option_4 = 'DataScienceJobs'
 option_5 = 'softwaredevelopment'
 option_6 = 'datasciencecareers'
 
-# DB_list = [option_5]
+# DB_list = [option_1, option_2, option_3, option_4, option_5, option_6]
 # for i in DB_list:
 #         createdb(i)
-# createdb(option_5)
-# savedb()
+# add_userid()
+#savedb()
