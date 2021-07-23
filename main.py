@@ -104,7 +104,7 @@ def submit():
                     form.title.data), str(
                     form.text.data), str(
                     form.username.data)))
-        
+
         except Exception as e:
             flash(f'Form could not be sumitted {e}')
             return render_template('selection.html')
