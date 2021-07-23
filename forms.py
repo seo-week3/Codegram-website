@@ -9,19 +9,29 @@ class RegistrationForm(FlaskForm):
     username = StringField(
         'Username', validators=[
             DataRequired(), Length(
-                min=2, max=20)], render_kw={'style':'width: 50ch'})
-    email = StringField('Email', validators=[DataRequired(), Email()], render_kw={'style':'width: 50ch'})
-    password = PasswordField('Password', validators=[DataRequired()], render_kw={'style':'width: 50ch'})
+                min=2, max=20)], render_kw={'style': 'width: 50ch'})
+    email = StringField(
+        'Email', validators=[
+            DataRequired(), Email()], render_kw={
+            'style': 'width: 50ch'})
+    password = PasswordField(
+        'Password', validators=[
+            DataRequired()], render_kw={
+            'style': 'width: 50ch'})
     confirm_password = PasswordField(
         'Confirm Password', validators=[
-            DataRequired(), EqualTo('password')], render_kw={'style':'width: 50ch'})
+            DataRequired(), EqualTo('password')], render_kw={
+            'style': 'width: 50ch'})
     submit = SubmitField('SignUp')
 
 
 class LoginForm(FlaskForm):
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()], render_kw={'style': 'width: 40ch'})
+    password = PasswordField(
+        'Password', validators=[
+            DataRequired()], render_kw={
+            'style': 'width: 40ch'})
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
@@ -41,8 +51,8 @@ class PostForm(FlaskForm):
         ('csMajors', 'CS Majors'),
         ('softwaredevelopment', 'Software Development'),
         ('datasciencecareers', 'DS Careers')
-    ], render_kw={'style':'width: 25ch'})
-    
+    ], render_kw={'style': 'width: 25ch'})
+
     username = StringField(
         'Username', validators=[
             DataRequired(), Length(
@@ -51,5 +61,9 @@ class PostForm(FlaskForm):
         'Title', validators=[
             DataRequired(), Length(
                 min=1, max=30)])
-    text = TextAreaField('Post', validators=[DataRequired(), Length(max=200)], render_kw={'style':'width: 50ch'})
+    text = TextAreaField(
+        'Post', validators=[
+            DataRequired(), Length(
+                max=200)], render_kw={
+            'style': 'width: 50ch'})
     submit = SubmitField('Post')

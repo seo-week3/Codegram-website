@@ -83,8 +83,8 @@ def createdb(name):
     df.to_sql(name, con=engine, if_exists='replace', index=False)
     return df
 
-#call function once!
-# def add_userid(): 
+# call function once!
+# def add_userid():
 #     os.system(
 #         'mysql -u root -pcodio -e "CREATE DATABASE IF NOT EXISTS ' +
 #         'Codegram' +
@@ -108,6 +108,7 @@ def createdb(name):
 #         con.execute(
 #               """ALTER TABLE Codegram.softwaredevelopment
 #               ADD user_id INT NOT NULL AUTO_INCREMENT primary key;""")
+
 
 def savedb():
     os.system("mysqldump -u root -pcodio Codegram > Codegram.sql")
@@ -138,6 +139,7 @@ def Update_db(name, new_data):
             ';')
     savedb()
 
+
 option_1 = "cscareerquestions"
 option_2 = "csMajors"
 option_3 = "csinterviewproblems"
@@ -149,4 +151,4 @@ option_6 = 'datasciencecareers'
 # for i in DB_list:
 #         createdb(i)
 # add_userid()
-#savedb()
+# savedb()

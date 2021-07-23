@@ -81,7 +81,7 @@ def login():
                 user[0].password, form.password.data):
             flash(f'Incorrect password for {form.email.data}')
             return render_template('login.html', title='Login Page', form=form)
-        flash(f'Logged In {form.email.data}')
+        flash(f'Logged In {form.email.data}', 'success')
         return render_template('selection.html')  # return reviews
     return render_template('login.html', title='Login Page', form=form)
 
@@ -108,7 +108,7 @@ def submit():
             flash(f'Form could not be sumitted {e}')
             return render_template('selection.html')
         else:
-            flash(f'Post submitted!')
+            flash(f'Post submitted!', 'success')
             return render_template('selection.html')
     return render_template('submit.html', form=form)
 
@@ -126,7 +126,7 @@ def selection_display():
         df = df.sort_values(['user_id'], ascending=False)
     except Exception as e:
         flash(f'System is currently down, select other choice')
-        return render_template('selection.html')
+        return render_template('selection.html', 'danger')
     else:
         x = df.to_dict('records')
         return render_template('selection_display.html', x=x)
@@ -141,7 +141,7 @@ def cscareerquestions():
         df = loadDataset(name)
         df = df.sort_values(['user_id'], ascending=False)
     except Exception as e:
-        flash(f'System is currently down, select other choice')
+        flash(f'System is currently down, select other choice', 'danger')
         return render_template('selection.html')
     else:
         x = df.to_dict('records')
@@ -155,7 +155,7 @@ def csMajors():
         df = loadDataset(name)
         df = df.sort_values(['user_id'], ascending=False)
     except Exception as e:
-        flash(f'System is currently down, select other choice')
+        flash(f'System is currently down, select other choice', 'danger')
         return render_template('selection.html')
     else:
         x = df.to_dict('records')
@@ -169,7 +169,7 @@ def csinterviewproblems():
         df = loadDataset(name)
         df = df.sort_values(['user_id'], ascending=False)
     except Exception as e:
-        flash(f'System is currently down, select other choice')
+        flash(f'System is currently down, select other choice', 'danger')
         return render_template('selection.html')
     else:
         x = df.to_dict('records')  # [{author:23, 45, 45}, comment:svrevr]
@@ -182,7 +182,7 @@ def DataScienceJobs():
     try:
         df = loadDataset(name)
     except Exception as e:
-        flash(f'System is currently down, select other choice')
+        flash(f'System is currently down, select other choice', 'danger')
         return render_template('selection.html')
     else:
         df.index += 1
@@ -200,7 +200,7 @@ def softwaredevelopment():
         df = df.sort_values(['user_id'], ascending=False)
     except Exception as e:
         flash(f'Server down {e}')
-        return render_template('selection.html')
+        return render_template('selection.html', 'danger')
     else:
         x = df.to_dict('records')
         return render_template('softwaredevelopment.html', x=x)
@@ -213,7 +213,7 @@ def datasciencecareers():
         df = loadDataset(name)
         df = df.sort_values(['user_id'], ascending=False)
     except Exception as e:
-        flash(f'System is currently down, select other choice {e}')
+        flash(f'System is currently down, select other choice {e}', 'danger')
         return render_template('selection.html')
     else:
         x = df.to_dict('records')

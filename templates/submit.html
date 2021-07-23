@@ -31,7 +31,6 @@
         <form  method="POST" action="">
             {{ form.hidden_tag() }}
             <legend class="border-bottom mb-4">Submit Post</legend>
-     
             <fieldset class="form-group">
                 {{ form.subtitle.label(class="form-control-label") }}
             {% if form.subtitle.errors %}
@@ -43,9 +42,9 @@
                 {% endfor %}
               </ul>
                 {% else %}
-           {{ form.subtitle(class="form-control form-control-lg") }}
+           {{ form.subtitle(class="form-control") }}
             {% endif %}
-                
+                        
              <br/>                 
       <div class="form-group">
          {{ form.username.label(class="form-control-label") }}
