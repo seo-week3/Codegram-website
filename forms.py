@@ -64,6 +64,6 @@ class PostForm(FlaskForm):
     text = TextAreaField(
         'Post', validators=[
             DataRequired(), Length(
-                max=200)], render_kw={
+                max=2000)], render_kw={
             'style': 'width: 50ch'})
     submit = SubmitField('Post')

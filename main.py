@@ -63,7 +63,7 @@ def register():
                 title="SignUp Page",
                 form=form)
         else:
-            flash(f'Account created for {form.username.data}')
+            flash(f'Account created for {form.username.data}', 'success')
             return render_template('selection.html')
     return render_template('register.html', title="SignUp Page", form=form)
 
@@ -104,6 +104,7 @@ def submit():
                     form.title.data), str(
                     form.text.data), str(
                     form.username.data)))
+        
         except Exception as e:
             flash(f'Form could not be sumitted {e}')
             return render_template('selection.html')
